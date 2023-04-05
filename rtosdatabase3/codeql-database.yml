@@ -1,0 +1,9 @@
+---
+sourceLocationPrefix: "/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC"
+baselineLinesOfCode: 3944
+unicodeNewlines: false
+columnKind: "utf8"
+primaryLanguage: "cpp"
+creationMetadata:
+  cliVersion: "2.12.4"
+  creationTime: "2023-04-05T05:53:19.587433Z"

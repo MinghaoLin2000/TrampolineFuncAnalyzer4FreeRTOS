@@ -1,0 +1,574 @@
+[2023-04-04 23:53:19] This is codeql database create --language=cpp -c make rtosdatabase3
+[2023-04-04 23:53:19] Log file was started late.
+[2023-04-04 23:53:19] [PROGRESS] database create> Initializing database at /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3.
+[2023-04-04 23:53:19] Running plumbing command: codeql database init --language=cpp --qlconfig-file=/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/qlconfig.yml --source-root=/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC --allow-missing-source-root=false --allow-already-existing -- /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3
+[2023-04-04 23:53:19] Calling plumbing command: codeql resolve languages --format=json
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Scanning for [codeql-extractor.yml] from /Users/mac/codeqlCL/codeql/.codeqlmanifest.json
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/go/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/python/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/java/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/html/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/xml/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/properties/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/cpp/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/csv/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/csharp/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/javascript/codeql-extractor.yml.
+[2023-04-04 23:53:19] [DETAILS] resolve languages> Parsing /Users/mac/codeqlCL/codeql/ruby/codeql-extractor.yml.
+[2023-04-04 23:53:19] Plumbing command codeql resolve languages completed:
+                      {
+                        "extractors" : {
+                          "go" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/go"
+                            }
+                          ],
+                          "python" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/python"
+                            }
+                          ],
+                          "java" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/java",
+                              "extractor_options" : {
+                                "exclude" : {
+                                  "title" : "A glob excluding files from analysis.",
+                                  "description" : "A glob indicating what files to exclude from the analysis.\n",
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          ],
+                          "html" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/html"
+                            }
+                          ],
+                          "xml" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/xml"
+                            }
+                          ],
+                          "properties" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/properties"
+                            }
+                          ],
+                          "cpp" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/cpp"
+                            }
+                          ],
+                          "csv" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/csv"
+                            }
+                          ],
+                          "csharp" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/csharp",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'brotli' (the default, to write brotli-compressed TRAP), 'gzip', and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|brotli)$"
+                                    }
+                                  }
+                                },
+                                "buildless" : {
+                                  "title" : "Whether to use buildless (standalone) extraction.",
+                                  "description" : "A value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "cil" : {
+                                  "title" : "Whether to enable CIL extraction.",
+                                  "description" : "A value indicating, whether CIL extraction should be enabled. The default is 'true'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "javascript" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/javascript",
+                              "extractor_options" : { }
+                            }
+                          ],
+                          "ruby" : [
+                            {
+                              "extractor_root" : "/Users/mac/codeqlCL/codeql/ruby"
+                            }
+                          ]
+                        }
+                      }
+[2023-04-04 23:53:19] [PROGRESS] database init> Calculating baseline information in /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
+[2023-04-04 23:53:19] [SPAMMY] database init> Ignoring the following directories when processing baseline information: .git, .hg, .svn.
+[2023-04-04 23:53:19] [DETAILS] database init> Running command in /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC: /Users/mac/codeqlCL/codeql/tools/osx64/scc --by-file --exclude-dir .git,.hg,.svn --format json .
+[2023-04-04 23:53:19] [SPAMMY] database init> Found 16 baseline files for cpp.
+[2023-04-04 23:53:19] [PROGRESS] database init> Calculated baseline information for languages: cpp (33ms).
+[2023-04-04 23:53:19] [PROGRESS] database init> Resolving extractor cpp.
+[2023-04-04 23:53:19] [DETAILS] database init> Found candidate extractor root for cpp: /Users/mac/codeqlCL/codeql/cpp.
+[2023-04-04 23:53:19] [PROGRESS] database init> Successfully loaded extractor C/C++ (cpp) from /Users/mac/codeqlCL/codeql/cpp.
+[2023-04-04 23:53:19] [PROGRESS] database init> Created skeleton CodeQL database at /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3. This in-progress database is ready to be populated by an extractor.
+[2023-04-04 23:53:19] Plumbing command codeql database init completed.
+[2023-04-04 23:53:19] [PROGRESS] database create> Running build command: [make]
+[2023-04-04 23:53:19] Running plumbing command: codeql database trace-command --working-dir=/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC --index-traceless-dbs --no-db-cluster -- /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3 make
+[2023-04-04 23:53:19] [PROGRESS] database trace-command> Running command in /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC: [make]
+[2023-04-04 23:53:20] [build-stdout] mkdir -p build/init
+[2023-04-04 23:53:20] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c init/startup.c -o build/init/startup.o
+[2023-04-04 23:53:23] [build-stdout] mkdir -p build
+[2023-04-04 23:53:23] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c syscall.c -o build/syscall.o
+[2023-04-04 23:53:23] [build-stdout] mkdir -p build
+[2023-04-04 23:53:23] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c main.c -o build/main.o
+[2023-04-04 23:53:24] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU
+[2023-04-04 23:53:24] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU/port.c -o build//Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU/port.o
+[2023-04-04 23:53:24] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source/portable/Common
+[2023-04-04 23:53:24] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/portable/Common/mpu_wrappers.c -o build//Users/mac/Downloads/FreeRTOS/Source/portable/Common/mpu_wrappers.o
+[2023-04-04 23:53:24] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source
+[2023-04-04 23:53:24] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/tasks.c -o build//Users/mac/Downloads/FreeRTOS/Source/tasks.o
+[2023-04-04 23:53:25] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source
+[2023-04-04 23:53:25] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/list.c -o build//Users/mac/Downloads/FreeRTOS/Source/list.o
+[2023-04-04 23:53:25] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source
+[2023-04-04 23:53:25] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/queue.c -o build//Users/mac/Downloads/FreeRTOS/Source/queue.o
+[2023-04-04 23:53:26] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source
+[2023-04-04 23:53:26] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/timers.c -o build//Users/mac/Downloads/FreeRTOS/Source/timers.o
+[2023-04-04 23:53:26] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source
+[2023-04-04 23:53:26] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/event_groups.c -o build//Users/mac/Downloads/FreeRTOS/Source/event_groups.o
+[2023-04-04 23:53:26] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source/portable/MemMang
+[2023-04-04 23:53:26] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/portable/MemMang/heap_4.c -o build//Users/mac/Downloads/FreeRTOS/Source/portable/MemMang/heap_4.o
+[2023-04-04 23:53:26] [build-stdout] mkdir -p build//Users/mac/Downloads/FreeRTOS/Source
+[2023-04-04 23:53:26] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c /Users/mac/Downloads/FreeRTOS/Source/stream_buffer.c -o build//Users/mac/Downloads/FreeRTOS/Source/stream_buffer.o
+[2023-04-04 23:53:27] [build-stdout] mkdir -p build
+[2023-04-04 23:53:27] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c app_main.c -o build/app_main.o
+[2023-04-04 23:53:27] [build-stdout] mkdir -p build
+[2023-04-04 23:53:27] [build-stdout] arm-none-eabi-gcc -mcpu=cortex-m3 -Wno-error=implicit-function-declaration -Wno-builtin-declaration-mismatch -Werror -Wall -Wextra -fstrict-aliasing -Wstrict-aliasing -Wno-error=address-of-packed-member -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC -I/Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/CMSIS -I/Users/mac/Downloads/FreeRTOS/Source/include -I/Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU -O3 -DHEAP4 -MMD -c mpu_demo.c -o build/mpu_demo.o
+[2023-04-04 23:53:27] [build-stdout] arm-none-eabi-gcc -ffunction-sections -fdata-sections -T ./scripts/mps2_m3.ld -mthumb -Xlinker -Map=build/output.map -nostartfiles -nostdlib -nolibc -nodefaultlibs build/init/startup.o build/syscall.o build/main.o build//Users/mac/Downloads/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU/port.o build//Users/mac/Downloads/FreeRTOS/Source/portable/Common/mpu_wrappers.o build//Users/mac/Downloads/FreeRTOS/Source/tasks.o build//Users/mac/Downloads/FreeRTOS/Source/list.o build//Users/mac/Downloads/FreeRTOS/Source/queue.o build//Users/mac/Downloads/FreeRTOS/Source/timers.o build//Users/mac/Downloads/FreeRTOS/Source/event_groups.o build//Users/mac/Downloads/FreeRTOS/Source/portable/MemMang/heap_4.o build//Users/mac/Downloads/FreeRTOS/Source/stream_buffer.o build/app_main.o build/mpu_demo.o -o build/RTOSDemo.axf
+[2023-04-04 23:53:28] Plumbing command codeql database trace-command completed.
+[2023-04-04 23:53:28] [PROGRESS] database create> Finalizing database at /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3.
+[2023-04-04 23:53:28] Running plumbing command: codeql database finalize --mode=normal --no-db-cluster -- /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3
+[2023-04-04 23:53:28] [PROGRESS] database finalize> Running TRAP import for CodeQL database at /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3...
+[2023-04-04 23:53:28] Running plumbing command: codeql dataset import --dbscheme=/Users/mac/codeqlCL/codeql/cpp/semmlecode.cpp.dbscheme -- /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/db-cpp /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/trap/cpp
+[2023-04-04 23:53:28] Clearing disk cache since the version file /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/db-cpp/default/cache/version does not exist
+[2023-04-04 23:53:28] Tuple pool not found. Clearing relations with cached strings
+[2023-04-04 23:53:28] Trimming disk cache at /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/db-cpp/default/cache in mode brutal.
+[2023-04-04 23:53:28] Sequence stamp origin is -6335446092305204923
+[2023-04-04 23:53:28] Pausing evaluation to hard-clear memory at sequence stamp o+0
+[2023-04-04 23:53:28] Unpausing evaluation
+[2023-04-04 23:53:28] Pausing evaluation to quickly trim disk at sequence stamp o+1
+[2023-04-04 23:53:28] Unpausing evaluation
+[2023-04-04 23:53:28] Pausing evaluation to zealously trim disk at sequence stamp o+2
+[2023-04-04 23:53:28] Unpausing evaluation
+[2023-04-04 23:53:28] Trimming completed (9ms): Purged everything.
+[2023-04-04 23:53:28] Scanning for files in /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/trap/cpp
+[2023-04-04 23:53:28] Grouping TRAPs by link target
+[2023-04-04 23:53:28] Scanning mpu_demo.h.ed11e0a0.trap (app_main.c.e1aa8f4e_0.trap.tar.br) (1 of 125)
+[2023-04-04 23:53:28] Scanning app_main.c.e1aa8f4e.trap (app_main.c.e1aa8f4e_0.trap.tar.br) (2 of 125)
+[2023-04-04 23:53:28] Scanning cpp_predefined.5653aa5f.trap (startup.c.7f78bb8b_0.trap.tar.br) (3 of 125)
+[2023-04-04 23:53:28] Scanning _newlib_version.h.579f9ab3.trap (startup.c.7f78bb8b_0.trap.tar.br) (4 of 125)
+[2023-04-04 23:53:28] Scanning features.h.ca15bab3.trap (startup.c.7f78bb8b_0.trap.tar.br) (5 of 125)
+[2023-04-04 23:53:28] Scanning _default_types.h.a3d3e11c.trap (startup.c.7f78bb8b_0.trap.tar.br) (6 of 125)
+[2023-04-04 23:53:28] Scanning _intsup.h.49e9fb58.trap (startup.c.7f78bb8b_0.trap.tar.br) (7 of 125)
+[2023-04-04 23:53:28] Scanning _stdint.h.44fd21d3.trap (startup.c.7f78bb8b_0.trap.tar.br) (8 of 125)
+[2023-04-04 23:53:28] Scanning stdint.h.726274bb.trap (startup.c.7f78bb8b_0.trap.tar.br) (9 of 125)
+[2023-04-04 23:53:28] Scanning stdint.h.b0965397.trap (startup.c.7f78bb8b_0.trap.tar.br) (10 of 125)
+[2023-04-04 23:53:28] Scanning newlib.h.9179a486.trap (startup.c.7f78bb8b_0.trap.tar.br) (11 of 125)
+[2023-04-04 23:53:28] Scanning ieeefp.h.1a64e97a.trap (startup.c.7f78bb8b_0.trap.tar.br) (12 of 125)
+[2023-04-04 23:53:28] Scanning config.h.a91c1530.trap (startup.c.7f78bb8b_0.trap.tar.br) (13 of 125)
+[2023-04-04 23:53:28] Scanning _ansi.h.ce2800dd.trap (startup.c.7f78bb8b_0.trap.tar.br) (14 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.2d43e555.trap (startup.c.7f78bb8b_0.trap.tar.br) (15 of 125)
+[2023-04-04 23:53:28] Scanning cdefs.h.e9a1ab3c.trap (startup.c.7f78bb8b_0.trap.tar.br) (16 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.f136554f.trap (startup.c.7f78bb8b_0.trap.tar.br) (17 of 125)
+[2023-04-04 23:53:28] Scanning stdarg.h.8ce9ea36.trap (startup.c.7f78bb8b_0.trap.tar.br) (18 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.e7cbd242.trap (startup.c.7f78bb8b_0.trap.tar.br) (19 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.d71ffa44.trap (startup.c.7f78bb8b_0.trap.tar.br) (20 of 125)
+[2023-04-04 23:53:28] Scanning _types.h.6e7af1a3.trap (startup.c.7f78bb8b_0.trap.tar.br) (21 of 125)
+[2023-04-04 23:53:28] Scanning _types.h.3510a834.trap (startup.c.7f78bb8b_0.trap.tar.br) (22 of 125)
+[2023-04-04 23:53:28] Scanning lock.h.45c2c3b4.trap (startup.c.7f78bb8b_0.trap.tar.br) (23 of 125)
+[2023-04-04 23:53:28] Scanning reent.h.54d8d9bc.trap (startup.c.7f78bb8b_0.trap.tar.br) (24 of 125)
+[2023-04-04 23:53:28] Scanning _endian.h.d0d1f7e7.trap (startup.c.7f78bb8b_0.trap.tar.br) (25 of 125)
+[2023-04-04 23:53:28] Scanning endian.h.4888e56a.trap (startup.c.7f78bb8b_0.trap.tar.br) (26 of 125)
+[2023-04-04 23:53:28] Scanning _sigset.h.695eaa83.trap (startup.c.7f78bb8b_0.trap.tar.br) (27 of 125)
+[2023-04-04 23:53:28] Scanning _timeval.h.c96f243b.trap (startup.c.7f78bb8b_0.trap.tar.br) (28 of 125)
+[2023-04-04 23:53:28] Scanning _timespec.h.a21bf6c1.trap (startup.c.7f78bb8b_0.trap.tar.br) (29 of 125)
+[2023-04-04 23:53:28] Scanning timespec.h.51c23ba6.trap (startup.c.7f78bb8b_0.trap.tar.br) (30 of 125)
+[2023-04-04 23:53:28] Scanning select.h.8caad81e.trap (startup.c.7f78bb8b_0.trap.tar.br) (31 of 125)
+[2023-04-04 23:53:28] Scanning sched.h.f9e25594.trap (startup.c.7f78bb8b_0.trap.tar.br) (32 of 125)
+[2023-04-04 23:53:28] Scanning _pthreadtypes.h.2244a595.trap (startup.c.7f78bb8b_0.trap.tar.br) (33 of 125)
+[2023-04-04 23:53:28] Scanning types.h.0d153726.trap (startup.c.7f78bb8b_0.trap.tar.br) (34 of 125)
+[2023-04-04 23:53:28] Scanning types.h.8a373f17.trap (startup.c.7f78bb8b_0.trap.tar.br) (35 of 125)
+[2023-04-04 23:53:28] Scanning stdio.h.b0a83c82.trap (startup.c.7f78bb8b_0.trap.tar.br) (36 of 125)
+[2023-04-04 23:53:28] Scanning stdio.h.df26a0e2.trap (startup.c.7f78bb8b_0.trap.tar.br) (37 of 125)
+[2023-04-04 23:53:28] Scanning ieeefp.h.8139bc87.trap (startup.c.7f78bb8b_0.trap.tar.br) (38 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.9762f1d0.trap (startup.c.7f78bb8b_0.trap.tar.br) (39 of 125)
+[2023-04-04 23:53:28] Scanning stdlib.h.579f9ab3.trap (startup.c.7f78bb8b_0.trap.tar.br) (40 of 125)
+[2023-04-04 23:53:28] Scanning alloca.h.cf03a204.trap (startup.c.7f78bb8b_0.trap.tar.br) (41 of 125)
+[2023-04-04 23:53:28] Scanning stdlib.h.b1a61a1b.trap (startup.c.7f78bb8b_0.trap.tar.br) (42 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.b8dbe722.trap (startup.c.7f78bb8b_0.trap.tar.br) (43 of 125)
+[2023-04-04 23:53:28] Scanning _locale.h.637e7882.trap (startup.c.7f78bb8b_0.trap.tar.br) (44 of 125)
+[2023-04-04 23:53:28] Scanning strings.h.b2349f72.trap (startup.c.7f78bb8b_0.trap.tar.br) (45 of 125)
+[2023-04-04 23:53:28] Scanning string.h.e80a79ec.trap (startup.c.7f78bb8b_0.trap.tar.br) (46 of 125)
+[2023-04-04 23:53:28] Scanning string.h.ce8903c0.trap (startup.c.7f78bb8b_0.trap.tar.br) (47 of 125)
+[2023-04-04 23:53:28] Scanning cmsis_version.h.782b16ec.trap (startup.c.7f78bb8b_0.trap.tar.br) (48 of 125)
+[2023-04-04 23:53:28] Scanning cmsis_gcc.h.64f52b1e.trap (startup.c.7f78bb8b_0.trap.tar.br) (49 of 125)
+[2023-04-04 23:53:28] Scanning cmsis_compiler.h.9de87a8f.trap (startup.c.7f78bb8b_0.trap.tar.br) (50 of 125)
+[2023-04-04 23:53:28] Scanning mpu_armv7.h.5c3ec0c8.trap (startup.c.7f78bb8b_0.trap.tar.br) (51 of 125)
+[2023-04-04 23:53:28] Scanning core_cm3.h.4be4e136.trap (startup.c.7f78bb8b_0.trap.tar.br) (52 of 125)
+[2023-04-04 23:53:28] Scanning CMSDK_CM3.h.99e1c96c.trap (startup.c.7f78bb8b_0.trap.tar.br) (53 of 125)
+[2023-04-04 23:53:28] Scanning core_cm3.h.8ccd6afd.trap (startup.c.7f78bb8b_0.trap.tar.br) (54 of 125)
+[2023-04-04 23:53:28] Scanning startup.c.7f78bb8b.trap (startup.c.7f78bb8b_0.trap.tar.br) (55 of 125)
+[2023-04-04 23:53:28] Scanning app_main.h.1a12599f.trap (main.c.64c6946b_0.trap.tar.br) (56 of 125)
+[2023-04-04 23:53:28] Scanning FreeRTOSConfig.h.65a8ffc8.trap (main.c.64c6946b_0.trap.tar.br) (57 of 125)
+[2023-04-04 23:53:28] Scanning projdefs.h.597bd5fa.trap (main.c.64c6946b_0.trap.tar.br) (58 of 125)
+[2023-04-04 23:53:28] Scanning deprecated_definitions.h.f40b93b7.trap (main.c.64c6946b_0.trap.tar.br) (59 of 125)
+[2023-04-04 23:53:28] Scanning portmacro.h.1d01999b.trap (main.c.64c6946b_0.trap.tar.br) (60 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.43be56eb.trap (main.c.64c6946b_0.trap.tar.br) (61 of 125)
+[2023-04-04 23:53:28] Scanning portable.h.ebe449e6.trap (main.c.64c6946b_0.trap.tar.br) (62 of 125)
+[2023-04-04 23:53:28] Scanning FreeRTOS.h.cd3ba1e0.trap (main.c.64c6946b_0.trap.tar.br) (63 of 125)
+[2023-04-04 23:53:28] Scanning list.h.6abab73c.trap (main.c.64c6946b_0.trap.tar.br) (64 of 125)
+[2023-04-04 23:53:28] Scanning task.h.3da5cf81.trap (main.c.64c6946b_0.trap.tar.br) (65 of 125)
+[2023-04-04 23:53:28] Scanning stdarg.h.bcfa60c0.trap (main.c.64c6946b_0.trap.tar.br) (66 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.ac9dfe32.trap (main.c.64c6946b_0.trap.tar.br) (67 of 125)
+[2023-04-04 23:53:28] Scanning stdio.h.d64f0b40.trap (main.c.64c6946b_0.trap.tar.br) (68 of 125)
+[2023-04-04 23:53:28] Scanning main.c.64c6946b.trap (main.c.64c6946b_0.trap.tar.br) (69 of 125)
+[2023-04-04 23:53:28] Scanning mpu_demo.c.6d409423.trap (mpu_demo.c.6d409423_0.trap.tar.br) (70 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.a8d56e2f.trap (syscall.c.bb8a0e08_0.trap.tar.br) (71 of 125)
+[2023-04-04 23:53:28] Scanning syscall.c.bb8a0e08.trap (syscall.c.bb8a0e08_0.trap.tar.br) (72 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.ba12ba12.trap (event_groups.c.5ce334f3_0.trap.tar.br) (73 of 125)
+[2023-04-04 23:53:28] Scanning event_groups.h.755e541e.trap (event_groups.c.5ce334f3_0.trap.tar.br) (74 of 125)
+[2023-04-04 23:53:28] Scanning event_groups.c.5ce334f3.trap (event_groups.c.5ce334f3_0.trap.tar.br) (75 of 125)
+[2023-04-04 23:53:28] Scanning reent.h.37f06e42.trap (list.c.b5722412_0.trap.tar.br) (76 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.0431a568.trap (list.c.b5722412_0.trap.tar.br) (77 of 125)
+[2023-04-04 23:53:28] Scanning portable.h.4c35c976.trap (list.c.b5722412_0.trap.tar.br) (78 of 125)
+[2023-04-04 23:53:28] Scanning list.c.b5722412.trap (list.c.b5722412_0.trap.tar.br) (79 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.fc65b99e.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) (80 of 125)
+[2023-04-04 23:53:28] Scanning queue.h.c4c37737.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) (81 of 125)
+[2023-04-04 23:53:28] Scanning timers.h.f76fbcbc.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) (82 of 125)
+[2023-04-04 23:53:28] Scanning event_groups.h.404eb66f.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) (83 of 125)
+[2023-04-04 23:53:28] Scanning stream_buffer.h.ea55e96d.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) (84 of 125)
+[2023-04-04 23:53:28] Scanning mpu_prototypes.h.a9270b3e.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) (85 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.c.aeda86f0.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) (86 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.cb0508e2.trap (port.c.4e62a713_0.trap.tar.br) (87 of 125)
+[2023-04-04 23:53:28] Scanning portable.h.5612b56b.trap (port.c.4e62a713_0.trap.tar.br) (88 of 125)
+[2023-04-04 23:53:28] Scanning FreeRTOS.h.d26d1cb8.trap (port.c.4e62a713_0.trap.tar.br) (89 of 125)
+[2023-04-04 23:53:28] Scanning list.h.56d01e2c.trap (port.c.4e62a713_0.trap.tar.br) (90 of 125)
+[2023-04-04 23:53:28] Scanning task.h.5f26ffea.trap (port.c.4e62a713_0.trap.tar.br) (91 of 125)
+[2023-04-04 23:53:28] Scanning port.c.4e62a713.trap (port.c.4e62a713_0.trap.tar.br) (92 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.9a73ef50.trap (heap_4.c.57c20797_0.trap.tar.br) (93 of 125)
+[2023-04-04 23:53:28] Scanning heap_4.c.57c20797.trap (heap_4.c.57c20797_0.trap.tar.br) (94 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.25941dc9.trap (queue.c.a3e544a4_0.trap.tar.br) (95 of 125)
+[2023-04-04 23:53:28] Scanning queue.h.38d46c04.trap (queue.c.a3e544a4_0.trap.tar.br) (96 of 125)
+[2023-04-04 23:53:28] Scanning queue.c.a3e544a4.trap (queue.c.a3e544a4_0.trap.tar.br) (97 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.246f99e2.trap (stream_buffer.c.c607e9e6_0.trap.tar.br) (98 of 125)
+[2023-04-04 23:53:28] Scanning stream_buffer.h.26f78c0f.trap (stream_buffer.c.c607e9e6_0.trap.tar.br) (99 of 125)
+[2023-04-04 23:53:28] Scanning stream_buffer.c.c607e9e6.trap (stream_buffer.c.c607e9e6_0.trap.tar.br) (100 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.e9bcb803.trap (tasks.c.f6dadc49_0.trap.tar.br) (101 of 125)
+[2023-04-04 23:53:28] Scanning stddef.h.3a978460.trap (tasks.c.f6dadc49_0.trap.tar.br) (102 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.c52c3a57.trap (tasks.c.f6dadc49_0.trap.tar.br) (103 of 125)
+[2023-04-04 23:53:28] Scanning task.h.661cb719.trap (tasks.c.f6dadc49_0.trap.tar.br) (104 of 125)
+[2023-04-04 23:53:28] Scanning stack_macros.h.73859cec.trap (tasks.c.f6dadc49_0.trap.tar.br) (105 of 125)
+[2023-04-04 23:53:28] Scanning tasks.c.f6dadc49.trap (tasks.c.f6dadc49_0.trap.tar.br) (106 of 125)
+[2023-04-04 23:53:28] Scanning mpu_wrappers.h.6a8bc82d.trap (timers.c.f558bf3a_0.trap.tar.br) (107 of 125)
+[2023-04-04 23:53:28] Scanning timers.h.9640143e.trap (timers.c.f558bf3a_0.trap.tar.br) (108 of 125)
+[2023-04-04 23:53:28] Scanning timers.c.f558bf3a.trap (timers.c.f558bf3a_0.trap.tar.br) (109 of 125)
+[2023-04-04 23:53:28] Scanning 37060833_0.trap.br (110 of 125)
+[2023-04-04 23:53:28] Scanning 65355808_0.trap.br (111 of 125)
+[2023-04-04 23:53:28] Scanning 40702755_0.trap.br (112 of 125)
+[2023-04-04 23:53:28] Scanning 55829519_0.trap.br (113 of 125)
+[2023-04-04 23:53:28] Scanning 65232214_0.trap.br (114 of 125)
+[2023-04-04 23:53:28] Scanning 44272045_0.trap.br (115 of 125)
+[2023-04-04 23:53:28] Scanning 10171604_0.trap.br (116 of 125)
+[2023-04-04 23:53:28] Scanning 48557084_0.trap.br (117 of 125)
+[2023-04-04 23:53:28] Scanning 47907066_0.trap.br (118 of 125)
+[2023-04-04 23:53:28] Scanning 39677284_0.trap.br (119 of 125)
+[2023-04-04 23:53:28] Scanning 48912278_0.trap.br (120 of 125)
+[2023-04-04 23:53:29] Scanning 5681633_0.trap.br (121 of 125)
+[2023-04-04 23:53:29] Scanning 5378032_0.trap.br (122 of 125)
+[2023-04-04 23:53:29] Scanning 146126_0.trap.br (123 of 125)
+[2023-04-04 23:53:29] Scanning RTOSDemo.axf.trap.br (124 of 125)
+[2023-04-04 23:53:29] Scanning sourceLocationPrefix.trap.gz (125 of 125)
+[2023-04-04 23:53:29] Assembling RTOSDemo.axf.link with 123 files (1 of 2)
+[2023-04-04 23:53:29] Assembling no link target with 2 files (2 of 2)
+[2023-04-04 23:53:29] Importing mpu_demo.h.ed11e0a0.trap (app_main.c.e1aa8f4e_0.trap.tar.br) for RTOSDemo.axf.link (1 of 125)
+[2023-04-04 23:53:29] Importing app_main.c.e1aa8f4e.trap (app_main.c.e1aa8f4e_0.trap.tar.br) for RTOSDemo.axf.link (2 of 125)
+[2023-04-04 23:53:29] Importing cpp_predefined.5653aa5f.trap (startup.c.7f78bb8b_0.trap.tar.br) for no link target (3 of 125)
+[2023-04-04 23:53:29] Importing _newlib_version.h.579f9ab3.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (4 of 125)
+[2023-04-04 23:53:29] Importing features.h.ca15bab3.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (5 of 125)
+[2023-04-04 23:53:29] Importing _default_types.h.a3d3e11c.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (6 of 125)
+[2023-04-04 23:53:29] Importing _intsup.h.49e9fb58.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (7 of 125)
+[2023-04-04 23:53:29] Importing _stdint.h.44fd21d3.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (8 of 125)
+[2023-04-04 23:53:29] Importing stdint.h.726274bb.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (9 of 125)
+[2023-04-04 23:53:29] Importing stdint.h.b0965397.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (10 of 125)
+[2023-04-04 23:53:29] Importing newlib.h.9179a486.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (11 of 125)
+[2023-04-04 23:53:29] Importing ieeefp.h.1a64e97a.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (12 of 125)
+[2023-04-04 23:53:29] Importing config.h.a91c1530.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (13 of 125)
+[2023-04-04 23:53:29] Importing _ansi.h.ce2800dd.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (14 of 125)
+[2023-04-04 23:53:29] Importing stddef.h.2d43e555.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (15 of 125)
+[2023-04-04 23:53:29] Importing cdefs.h.e9a1ab3c.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (16 of 125)
+[2023-04-04 23:53:29] Importing stddef.h.f136554f.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (17 of 125)
+[2023-04-04 23:53:29] Importing stdarg.h.8ce9ea36.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (18 of 125)
+[2023-04-04 23:53:29] Importing stddef.h.e7cbd242.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (19 of 125)
+[2023-04-04 23:53:29] Importing stddef.h.d71ffa44.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (20 of 125)
+[2023-04-04 23:53:29] Importing _types.h.6e7af1a3.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (21 of 125)
+[2023-04-04 23:53:29] Importing _types.h.3510a834.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (22 of 125)
+[2023-04-04 23:53:29] Importing lock.h.45c2c3b4.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (23 of 125)
+[2023-04-04 23:53:29] Importing reent.h.54d8d9bc.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (24 of 125)
+[2023-04-04 23:53:29] Importing _endian.h.d0d1f7e7.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (25 of 125)
+[2023-04-04 23:53:29] Importing endian.h.4888e56a.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (26 of 125)
+[2023-04-04 23:53:29] Importing _sigset.h.695eaa83.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (27 of 125)
+[2023-04-04 23:53:29] Importing _timeval.h.c96f243b.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (28 of 125)
+[2023-04-04 23:53:29] Importing _timespec.h.a21bf6c1.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (29 of 125)
+[2023-04-04 23:53:29] Importing timespec.h.51c23ba6.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (30 of 125)
+[2023-04-04 23:53:29] Importing select.h.8caad81e.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (31 of 125)
+[2023-04-04 23:53:29] Importing sched.h.f9e25594.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (32 of 125)
+[2023-04-04 23:53:29] Importing _pthreadtypes.h.2244a595.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (33 of 125)
+[2023-04-04 23:53:29] Importing types.h.0d153726.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (34 of 125)
+[2023-04-04 23:53:29] Importing types.h.8a373f17.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (35 of 125)
+[2023-04-04 23:53:29] Importing stdio.h.b0a83c82.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (36 of 125)
+[2023-04-04 23:53:29] Importing stdio.h.df26a0e2.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (37 of 125)
+[2023-04-04 23:53:29] Importing ieeefp.h.8139bc87.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (38 of 125)
+[2023-04-04 23:53:29] Importing stddef.h.9762f1d0.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (39 of 125)
+[2023-04-04 23:53:29] Importing stdlib.h.579f9ab3.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (40 of 125)
+[2023-04-04 23:53:29] Importing alloca.h.cf03a204.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (41 of 125)
+[2023-04-04 23:53:29] Importing stdlib.h.b1a61a1b.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (42 of 125)
+[2023-04-04 23:53:29] Importing stddef.h.b8dbe722.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (43 of 125)
+[2023-04-04 23:53:29] Importing _locale.h.637e7882.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (44 of 125)
+[2023-04-04 23:53:29] Importing strings.h.b2349f72.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (45 of 125)
+[2023-04-04 23:53:29] Importing string.h.e80a79ec.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (46 of 125)
+[2023-04-04 23:53:29] Importing string.h.ce8903c0.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (47 of 125)
+[2023-04-04 23:53:29] Importing cmsis_version.h.782b16ec.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (48 of 125)
+[2023-04-04 23:53:29] Importing cmsis_gcc.h.64f52b1e.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (49 of 125)
+[2023-04-04 23:53:29] Importing cmsis_compiler.h.9de87a8f.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (50 of 125)
+[2023-04-04 23:53:29] Importing mpu_armv7.h.5c3ec0c8.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (51 of 125)
+[2023-04-04 23:53:29] Importing core_cm3.h.4be4e136.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (52 of 125)
+[2023-04-04 23:53:29] Importing CMSDK_CM3.h.99e1c96c.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (53 of 125)
+[2023-04-04 23:53:29] Importing core_cm3.h.8ccd6afd.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (54 of 125)
+[2023-04-04 23:53:29] Importing startup.c.7f78bb8b.trap (startup.c.7f78bb8b_0.trap.tar.br) for RTOSDemo.axf.link (55 of 125)
+[2023-04-04 23:53:29] Importing app_main.h.1a12599f.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (56 of 125)
+[2023-04-04 23:53:29] Importing FreeRTOSConfig.h.65a8ffc8.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (57 of 125)
+[2023-04-04 23:53:29] Importing projdefs.h.597bd5fa.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (58 of 125)
+[2023-04-04 23:53:29] Importing deprecated_definitions.h.f40b93b7.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (59 of 125)
+[2023-04-04 23:53:29] Importing portmacro.h.1d01999b.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (60 of 125)
+[2023-04-04 23:53:29] Importing mpu_wrappers.h.43be56eb.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (61 of 125)
+[2023-04-04 23:53:29] Importing portable.h.ebe449e6.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (62 of 125)
+[2023-04-04 23:53:29] Importing FreeRTOS.h.cd3ba1e0.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (63 of 125)
+[2023-04-04 23:53:29] Importing list.h.6abab73c.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (64 of 125)
+[2023-04-04 23:53:29] Importing task.h.3da5cf81.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (65 of 125)
+[2023-04-04 23:53:29] Importing stdarg.h.bcfa60c0.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (66 of 125)
+[2023-04-04 23:53:29] Importing stddef.h.ac9dfe32.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (67 of 125)
+[2023-04-04 23:53:29] Importing stdio.h.d64f0b40.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (68 of 125)
+[2023-04-04 23:53:29] Importing main.c.64c6946b.trap (main.c.64c6946b_0.trap.tar.br) for RTOSDemo.axf.link (69 of 125)
+[2023-04-04 23:53:29] Importing mpu_demo.c.6d409423.trap (mpu_demo.c.6d409423_0.trap.tar.br) for RTOSDemo.axf.link (70 of 125)
+[2023-04-04 23:53:29] Importing stddef.h.a8d56e2f.trap (syscall.c.bb8a0e08_0.trap.tar.br) for RTOSDemo.axf.link (71 of 125)
+[2023-04-04 23:53:29] Importing syscall.c.bb8a0e08.trap (syscall.c.bb8a0e08_0.trap.tar.br) for RTOSDemo.axf.link (72 of 125)
+[2023-04-04 23:53:29] Importing mpu_wrappers.h.ba12ba12.trap (event_groups.c.5ce334f3_0.trap.tar.br) for RTOSDemo.axf.link (73 of 125)
+[2023-04-04 23:53:29] Importing event_groups.h.755e541e.trap (event_groups.c.5ce334f3_0.trap.tar.br) for RTOSDemo.axf.link (74 of 125)
+[2023-04-04 23:53:29] Importing event_groups.c.5ce334f3.trap (event_groups.c.5ce334f3_0.trap.tar.br) for RTOSDemo.axf.link (75 of 125)
+[2023-04-04 23:53:29] Importing reent.h.37f06e42.trap (list.c.b5722412_0.trap.tar.br) for RTOSDemo.axf.link (76 of 125)
+[2023-04-04 23:53:29] Importing mpu_wrappers.h.0431a568.trap (list.c.b5722412_0.trap.tar.br) for RTOSDemo.axf.link (77 of 125)
+[2023-04-04 23:53:29] Importing portable.h.4c35c976.trap (list.c.b5722412_0.trap.tar.br) for RTOSDemo.axf.link (78 of 125)
+[2023-04-04 23:53:29] Importing list.c.b5722412.trap (list.c.b5722412_0.trap.tar.br) for RTOSDemo.axf.link (79 of 125)
+[2023-04-04 23:53:29] Importing mpu_wrappers.h.fc65b99e.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) for RTOSDemo.axf.link (80 of 125)
+[2023-04-04 23:53:29] Importing queue.h.c4c37737.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) for RTOSDemo.axf.link (81 of 125)
+[2023-04-04 23:53:29] Importing timers.h.f76fbcbc.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) for RTOSDemo.axf.link (82 of 125)
+[2023-04-04 23:53:29] Importing event_groups.h.404eb66f.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) for RTOSDemo.axf.link (83 of 125)
+[2023-04-04 23:53:29] Importing stream_buffer.h.ea55e96d.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) for RTOSDemo.axf.link (84 of 125)
+[2023-04-04 23:53:29] Importing mpu_prototypes.h.a9270b3e.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) for RTOSDemo.axf.link (85 of 125)
+[2023-04-04 23:53:29] Importing mpu_wrappers.c.aeda86f0.trap (mpu_wrappers.c.aeda86f0_0.trap.tar.br) for RTOSDemo.axf.link (86 of 125)
+[2023-04-04 23:53:29] Importing mpu_wrappers.h.cb0508e2.trap (port.c.4e62a713_0.trap.tar.br) for RTOSDemo.axf.link (87 of 125)
+[2023-04-04 23:53:29] Importing portable.h.5612b56b.trap (port.c.4e62a713_0.trap.tar.br) for RTOSDemo.axf.link (88 of 125)
+[2023-04-04 23:53:29] Importing FreeRTOS.h.d26d1cb8.trap (port.c.4e62a713_0.trap.tar.br) for RTOSDemo.axf.link (89 of 125)
+[2023-04-04 23:53:29] Importing list.h.56d01e2c.trap (port.c.4e62a713_0.trap.tar.br) for RTOSDemo.axf.link (90 of 125)
+[2023-04-04 23:53:30] Importing task.h.5f26ffea.trap (port.c.4e62a713_0.trap.tar.br) for RTOSDemo.axf.link (91 of 125)
+[2023-04-04 23:53:30] Importing port.c.4e62a713.trap (port.c.4e62a713_0.trap.tar.br) for RTOSDemo.axf.link (92 of 125)
+[2023-04-04 23:53:30] Importing mpu_wrappers.h.9a73ef50.trap (heap_4.c.57c20797_0.trap.tar.br) for RTOSDemo.axf.link (93 of 125)
+[2023-04-04 23:53:30] Importing heap_4.c.57c20797.trap (heap_4.c.57c20797_0.trap.tar.br) for RTOSDemo.axf.link (94 of 125)
+[2023-04-04 23:53:30] Importing mpu_wrappers.h.25941dc9.trap (queue.c.a3e544a4_0.trap.tar.br) for RTOSDemo.axf.link (95 of 125)
+[2023-04-04 23:53:30] Importing queue.h.38d46c04.trap (queue.c.a3e544a4_0.trap.tar.br) for RTOSDemo.axf.link (96 of 125)
+[2023-04-04 23:53:30] Importing queue.c.a3e544a4.trap (queue.c.a3e544a4_0.trap.tar.br) for RTOSDemo.axf.link (97 of 125)
+[2023-04-04 23:53:30] Importing mpu_wrappers.h.246f99e2.trap (stream_buffer.c.c607e9e6_0.trap.tar.br) for RTOSDemo.axf.link (98 of 125)
+[2023-04-04 23:53:30] Importing stream_buffer.h.26f78c0f.trap (stream_buffer.c.c607e9e6_0.trap.tar.br) for RTOSDemo.axf.link (99 of 125)
+[2023-04-04 23:53:30] Importing stream_buffer.c.c607e9e6.trap (stream_buffer.c.c607e9e6_0.trap.tar.br) for RTOSDemo.axf.link (100 of 125)
+[2023-04-04 23:53:30] Importing stddef.h.e9bcb803.trap (tasks.c.f6dadc49_0.trap.tar.br) for RTOSDemo.axf.link (101 of 125)
+[2023-04-04 23:53:30] Importing stddef.h.3a978460.trap (tasks.c.f6dadc49_0.trap.tar.br) for RTOSDemo.axf.link (102 of 125)
+[2023-04-04 23:53:30] Importing mpu_wrappers.h.c52c3a57.trap (tasks.c.f6dadc49_0.trap.tar.br) for RTOSDemo.axf.link (103 of 125)
+[2023-04-04 23:53:30] Importing task.h.661cb719.trap (tasks.c.f6dadc49_0.trap.tar.br) for RTOSDemo.axf.link (104 of 125)
+[2023-04-04 23:53:30] Importing stack_macros.h.73859cec.trap (tasks.c.f6dadc49_0.trap.tar.br) for RTOSDemo.axf.link (105 of 125)
+[2023-04-04 23:53:30] Importing tasks.c.f6dadc49.trap (tasks.c.f6dadc49_0.trap.tar.br) for RTOSDemo.axf.link (106 of 125)
+[2023-04-04 23:53:30] Importing mpu_wrappers.h.6a8bc82d.trap (timers.c.f558bf3a_0.trap.tar.br) for RTOSDemo.axf.link (107 of 125)
+[2023-04-04 23:53:30] Importing timers.h.9640143e.trap (timers.c.f558bf3a_0.trap.tar.br) for RTOSDemo.axf.link (108 of 125)
+[2023-04-04 23:53:30] Importing timers.c.f558bf3a.trap (timers.c.f558bf3a_0.trap.tar.br) for RTOSDemo.axf.link (109 of 125)
+[2023-04-04 23:53:30] Importing 37060833_0.trap.br for RTOSDemo.axf.link (110 of 125)
+[2023-04-04 23:53:30] Importing 65355808_0.trap.br for RTOSDemo.axf.link (111 of 125)
+[2023-04-04 23:53:30] Importing 40702755_0.trap.br for RTOSDemo.axf.link (112 of 125)
+[2023-04-04 23:53:30] Importing 55829519_0.trap.br for RTOSDemo.axf.link (113 of 125)
+[2023-04-04 23:53:30] Importing 65232214_0.trap.br for RTOSDemo.axf.link (114 of 125)
+[2023-04-04 23:53:30] Importing 44272045_0.trap.br for RTOSDemo.axf.link (115 of 125)
+[2023-04-04 23:53:30] Importing 10171604_0.trap.br for RTOSDemo.axf.link (116 of 125)
+[2023-04-04 23:53:30] Importing 48557084_0.trap.br for RTOSDemo.axf.link (117 of 125)
+[2023-04-04 23:53:30] Importing 47907066_0.trap.br for RTOSDemo.axf.link (118 of 125)
+[2023-04-04 23:53:30] Importing 39677284_0.trap.br for RTOSDemo.axf.link (119 of 125)
+[2023-04-04 23:53:30] Importing 48912278_0.trap.br for RTOSDemo.axf.link (120 of 125)
+[2023-04-04 23:53:30] Importing 5681633_0.trap.br for RTOSDemo.axf.link (121 of 125)
+[2023-04-04 23:53:30] Importing 5378032_0.trap.br for RTOSDemo.axf.link (122 of 125)
+[2023-04-04 23:53:30] Importing 146126_0.trap.br for RTOSDemo.axf.link (123 of 125)
+[2023-04-04 23:53:30] Importing RTOSDemo.axf.trap.br for RTOSDemo.axf.link (124 of 125)
+[2023-04-04 23:53:30] Importing sourceLocationPrefix.trap.gz for no link target (125 of 125)
+[2023-04-04 23:53:30] Merging 1 fragment for files.
+[2023-04-04 23:53:30] Merging 1 fragment for numlines.
+[2023-04-04 23:53:30] Merging 1 fragment for functions.
+[2023-04-04 23:53:30] Merging 1 fragment for link_parent.
+[2023-04-04 23:53:30] Merging 1 fragment for function_return_type.
+[2023-04-04 23:53:30] Merging 1 fragment for locations_default.
+[2023-04-04 23:53:30] Merging 1 fragment for preprocdirects.
+[2023-04-04 23:53:30] Merging 1 fragment for preproctext.
+[2023-04-04 23:53:30] Merging 1 fragment for preproctrue.
+[2023-04-04 23:53:30] Merging 1 fragment for fun_decls.
+[2023-04-04 23:53:30] Merging 1 fragment for fun_decl_specifiers.
+[2023-04-04 23:53:30] Merging 1 fragment for comments.
+[2023-04-04 23:53:30] Merging 1 fragment for commentbinding.
+[2023-04-04 23:53:30] Merging 1 fragment for containerparent.
+[2023-04-04 23:53:30] Merging 1 fragment for folders.
+[2023-04-04 23:53:30] Merging 1 fragment for mangled_name.
+[2023-04-04 23:53:30] Merging 1 fragment for funspecifiers.
+[2023-04-04 23:53:30] Merging 1 fragment for preprocpair.
+[2023-04-04 23:53:30] Merging 1 fragment for fileannotations.
+[2023-04-04 23:53:30] Merging 1 fragment for includes.
+[2023-04-04 23:53:30] Merging 1 fragment for type_mentions.
+[2023-04-04 23:53:30] Merging 1 fragment for derivedtypes.
+[2023-04-04 23:53:30] Merging 1 fragment for pointerishsize.
+[2023-04-04 23:53:30] Merging 1 fragment for unspecifiedtype.
+[2023-04-04 23:53:30] Merging 1 fragment for params.
+[2023-04-04 23:53:30] Merging 1 fragment for fun_def.
+[2023-04-04 23:53:30] Merging 1 fragment for var_def.
+[2023-04-04 23:53:30] Merging 1 fragment for param_decl_bind.
+[2023-04-04 23:53:30] Merging 1 fragment for locations_stmt.
+[2023-04-04 23:53:30] Merging 1 fragment for stmts.
+[2023-04-04 23:53:30] Merging 1 fragment for localvariables.
+[2023-04-04 23:53:30] Merging 1 fragment for var_decls.
+[2023-04-04 23:53:30] Merging 1 fragment for var_decl_specifiers.
+[2023-04-04 23:53:30] Merging 1 fragment for orphaned_variables.
+[2023-04-04 23:53:30] Merging 1 fragment for stmt_decl_bind.
+[2023-04-04 23:53:30] Merging 1 fragment for stmt_decl_entry_bind.
+[2023-04-04 23:53:30] Merging 1 fragment for macroinvocations.
+[2023-04-04 23:53:30] Merging 1 fragment for affectedbymacroexpansion.
+[2023-04-04 23:53:30] Merging 1 fragment for macroparent.
+[2023-04-04 23:53:30] Merging 1 fragment for arraysizes.
+[2023-04-04 23:53:30] Merging 1 fragment for values.
+[2023-04-04 23:53:30] Merging 1 fragment for locations_expr.
+[2023-04-04 23:53:30] Merging 1 fragment for exprs.
+[2023-04-04 23:53:30] Merging 1 fragment for expr_types.
+[2023-04-04 23:53:30] Merging 1 fragment for valuebind.
+[2023-04-04 23:53:30] Merging 1 fragment for inmacroexpansion.
+[2023-04-04 23:53:30] Merging 1 fragment for macrolocationbind.
+[2023-04-04 23:53:30] Merging 1 fragment for valuetext.
+[2023-04-04 23:53:30] Merging 1 fragment for exprconv.
+[2023-04-04 23:53:30] Merging 1 fragment for conversionkinds.
+[2023-04-04 23:53:30] Merging 1 fragment for expr_isload.
+[2023-04-04 23:53:30] Merging 1 fragment for exprparents.
+[2023-04-04 23:53:30] Merging 1 fragment for compgenerated.
+[2023-04-04 23:53:30] Merging 1 fragment for stmtparents.
+[2023-04-04 23:53:30] Merging 1 fragment for blockscope.
+[2023-04-04 23:53:30] Merging 1 fragment for function_entry_point.
+[2023-04-04 23:53:30] Merging 1 fragment for routinetypes.
+[2023-04-04 23:53:30] Merging 1 fragment for routinetypeargs.
+[2023-04-04 23:53:30] Merging 1 fragment for funbind.
+[2023-04-04 23:53:30] Merging 1 fragment for for_body.
+[2023-04-04 23:53:30] Merging 1 fragment for varspecifiers.
+[2023-04-04 23:53:30] Merging 1 fragment for expr_ancestor.
+[2023-04-04 23:53:30] Merging 1 fragment for varbind.
+[2023-04-04 23:53:30] Merging 1 fragment for iscall.
+[2023-04-04 23:53:30] Merging 1 fragment for typespecifiers.
+[2023-04-04 23:53:30] Merging 1 fragment for builtintypes.
+[2023-04-04 23:53:30] Merging 1 fragment for link_targets.
+[2023-04-04 23:53:30] Merging 1 fragment for usertypes.
+[2023-04-04 23:53:30] Merging 1 fragment for namespaces.
+[2023-04-04 23:53:30] Merging 1 fragment for specialnamequalifyingelements.
+[2023-04-04 23:53:30] Merging 1 fragment for specifiers.
+[2023-04-04 23:53:30] Merging 1 fragment for preprocfalse.
+[2023-04-04 23:53:30] Merging 1 fragment for macro_argument_unexpanded.
+[2023-04-04 23:53:30] Merging 1 fragment for macro_argument_expanded.
+[2023-04-04 23:53:30] Merging 1 fragment for typedefbase.
+[2023-04-04 23:53:30] Merging 1 fragment for type_decls.
+[2023-04-04 23:53:30] Merging 1 fragment for type_decl_top.
+[2023-04-04 23:53:30] Merging 1 fragment for usertypesize.
+[2023-04-04 23:53:30] Merging 1 fragment for is_pod_class.
+[2023-04-04 23:53:30] Merging 1 fragment for is_standard_layout_class.
+[2023-04-04 23:53:30] Merging 1 fragment for is_complete.
+[2023-04-04 23:53:30] Merging 1 fragment for member.
+[2023-04-04 23:53:30] Merging 1 fragment for type_def.
+[2023-04-04 23:53:30] Merging 1 fragment for membervariables.
+[2023-04-04 23:53:30] Merging 1 fragment for fieldoffsets.
+[2023-04-04 23:53:30] Merging 1 fragment for sizeof_bind.
+[2023-04-04 23:53:30] Merging 1 fragment for attributes.
+[2023-04-04 23:53:30] Merging 1 fragment for attribute_arg_constant.
+[2023-04-04 23:53:30] Merging 1 fragment for attribute_args.
+[2023-04-04 23:53:30] Merging 1 fragment for varattributes.
+[2023-04-04 23:53:30] Merging 1 fragment for globalvariables.
+[2023-04-04 23:53:30] Merging 1 fragment for if_then.
+[2023-04-04 23:53:30] Merging 1 fragment for if_else.
+[2023-04-04 23:53:30] Merging 1 fragment for attribute_arg_value.
+[2023-04-04 23:53:30] Merging 1 fragment for funcattributes.
+[2023-04-04 23:53:30] Merging 1 fragment for expr_cond_guard.
+[2023-04-04 23:53:30] Merging 1 fragment for expr_cond_true.
+[2023-04-04 23:53:30] Merging 1 fragment for expr_cond_false.
+[2023-04-04 23:53:30] Merging 1 fragment for enclosingfunction.
+[2023-04-04 23:53:30] Merging 1 fragment for for_condition.
+[2023-04-04 23:53:30] Merging 1 fragment for for_initialization.
+[2023-04-04 23:53:30] Merging 1 fragment for for_update.
+[2023-04-04 23:53:30] Merging 1 fragment for typeattributes.
+[2023-04-04 23:53:30] Merging 1 fragment for initialisers.
+[2023-04-04 23:53:30] Merging 1 fragment for while_body.
+[2023-04-04 23:53:30] Merging 1 fragment for bitfield.
+[2023-04-04 23:53:30] Merging 1 fragment for enumconstants.
+[2023-04-04 23:53:30] Merging 1 fragment for aggregate_array_init.
+[2023-04-04 23:53:30] Merging 1 fragment for aggregate_field_init.
+[2023-04-04 23:53:30] Merging 1 fragment for braced_initialisers.
+[2023-04-04 23:53:30] Merging 1 fragment for jumpinfo.
+[2023-04-04 23:53:30] Merging 1 fragment for switch_body.
+[2023-04-04 23:53:30] Merging 1 fragment for switch_case.
+[2023-04-04 23:53:30] Merging 1 fragment for do_body.
+[2023-04-04 23:53:30] Merging 1 fragment for compilations.
+[2023-04-04 23:53:30] Merging 1 fragment for compilation_args.
+[2023-04-04 23:53:30] Merging 1 fragment for compilation_compiling_files.
+[2023-04-04 23:53:30] Merging 1 fragment for compilation_time.
+[2023-04-04 23:53:30] Merging 1 fragment for compilation_finished.
+[2023-04-04 23:53:30] Merging 1 fragment for sourceLocationPrefix.
+[2023-04-04 23:53:30] Saving string and id pools to disk.
+[2023-04-04 23:53:30] Finished importing trap files.
+[2023-04-04 23:53:30] Pausing evaluation to close the cache at sequence stamp o+3
+[2023-04-04 23:53:30] The disk cache is freshly trimmed; leave it be.
+[2023-04-04 23:53:30] Unpausing evaluation
+[2023-04-04 23:53:30] Plumbing command codeql dataset import completed.
+[2023-04-04 23:53:30] [PROGRESS] database finalize> TRAP import complete (2.6s).
+[2023-04-04 23:53:30] Running plumbing command: codeql database cleanup --mode=normal -- /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3
+[2023-04-04 23:53:31] [PROGRESS] database cleanup> Cleaning up existing TRAP files after import...
+[2023-04-04 23:53:31] [PROGRESS] database cleanup> TRAP files cleaned up (16ms).
+[2023-04-04 23:53:31] [PROGRESS] database cleanup> Cleaning up scratch directory...
+[2023-04-04 23:53:31] [PROGRESS] database cleanup> Scratch directory cleaned up (24ms).
+[2023-04-04 23:53:31] Running plumbing command: codeql dataset cleanup --mode=normal -- /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/db-cpp
+[2023-04-04 23:53:31] [PROGRESS] dataset cleanup> Cleaning up dataset in /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/db-cpp.
+[2023-04-04 23:53:31] Trimming disk cache at /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/db-cpp/default/cache in mode normal.
+[2023-04-04 23:53:31] Sequence stamp origin is -6335446080955466081
+[2023-04-04 23:53:31] Pausing evaluation to zealously trim disk at sequence stamp o+0
+[2023-04-04 23:53:31] Unpausing evaluation
+[2023-04-04 23:53:31] Trimming completed (1ms): Trimmed disposable data from cache.
+[2023-04-04 23:53:31] Pausing evaluation to close the cache at sequence stamp o+1
+[2023-04-04 23:53:31] The disk cache is freshly trimmed; leave it be.
+[2023-04-04 23:53:31] Unpausing evaluation
+[2023-04-04 23:53:31] [PROGRESS] dataset cleanup> Trimmed disposable data from cache.
+[2023-04-04 23:53:31] [PROGRESS] dataset cleanup> Finalizing dataset in /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/db-cpp
+[2023-04-04 23:53:31] [DETAILS] dataset cleanup> Finished deleting ID pool from /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3/db-cpp (3ms).
+[2023-04-04 23:53:31] Plumbing command codeql dataset cleanup completed.
+[2023-04-04 23:53:31] Plumbing command codeql database cleanup completed with status 0.
+[2023-04-04 23:53:31] Plumbing command codeql database finalize completed.
+[2023-04-04 23:53:31] [PROGRESS] database create> Successfully created database at /Users/mac/Downloads/FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/rtosdatabase3.
+[2023-04-04 23:53:31] Terminating normally.
