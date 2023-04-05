@@ -43,7 +43,7 @@ class MPUTaskArbWCfg extends TaintTracking::Configuration {
 }
 
 
-// find leak
+// find arbitrary read
 class MPUTaskInfoLeak extends TaintTracking::Configuration {
     MPUTaskInfoLeak () { this = "MPUTaskInfoLeak" }
     override predicate isSource(DataFlow::Node source) {
