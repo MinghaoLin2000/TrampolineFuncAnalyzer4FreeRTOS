@@ -1,0 +1,35 @@
+{
+	"folders": [
+        {
+            "path": "codeql-custom-queries-cpp"
+        },
+        {
+            "path": "codeql-custom-queries-csharp"
+        },
+        {
+            "path": "codeql-custom-queries-go"
+        },
+        {
+            "path": "codeql-custom-queries-java"
+        },
+        {
+            "path": "codeql-custom-queries-javascript"
+        },
+        {
+            "path": "codeql-custom-queries-python"
+        },
+        {
+            "path": "codeql-custom-queries-ruby"
+        },
+        {
+            "path": "ql"
+        },
+        {
+            "name": "[codql_database source archive]",
+            "uri": "codeql-zip-archive://0-43/Users/mac/Downloads/codql_database/src.zip"
+        }
+    ],
+	"settings": {
+		"omnisharp.autoStart": false
+	}
+}
