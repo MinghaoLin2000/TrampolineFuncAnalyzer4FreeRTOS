@@ -15,13 +15,103 @@ An automatic tool to identify all trampoline functions in FreeRTOS that can caus
 
 ## Overall Results
 ### List of functions causing arbitrary write
-1. MPU_XXX
+1. MPU_xStreamBufferSetTriggerLevel
+2. MPU_xStreamBufferReset
+3. MPU_vStreamBufferDelete
+4. MPU_xStreamBufferReceive
+5. MPU_xStreamBufferSend
+6. MPU_vEventGroupDelete
+7. MPU_xEventGroupSync
+8. MPU_xEventGroupSetBits
+9. MPU_xEventGroupClearBits
+10. MPU_xEventGroupWaitBits
+11. MPU_xEventGroupCreateStatic
+12. MPU_vTimerSetReloadMode
+13. MPU_vTimerSetTimerID
+14. MPU_xQueueGenericReset
+15. MPU_xQueueSelectFromSet
+16. MPU_xQueueRemoveFromSet
+17. MPU_xQueueAddToSet
+18. MPU_xQueueGenericCreateStatic
+19. MPU_xQueueGiveMutexRecursive
+20. MPU_xQueueTakeMutexRecursive
+21. MPU_xQueueCreateCountingSemaphoreStatic
+22. MPU_vQueueDelete
+23. MPU_xQueueSemaphoreTake
+24. MPU_xQueuePeek
+25. MPU_xQueueReceive
+26. MPU_xQueueGenericSend
+27. MPU_ulTaskGenericNotifyValueClear
+28. MPU_xTaskGenericNotifyStateClear
+29. MPU_xTaskGenericNotifyWait
+30. MPU_xTaskGenericNotify
+31. MPU_vTaskGetRunTimeStats
+32. MPU_vTaskList
+33. MPU_vTaskSetThreadLocalStoragePointer
+34. MPU_vTaskSetApplicationTaskTag
+35. MPU_uxTaskGetStackHighWaterMark2
+36. MPU_uxTaskGetStackHighWaterMark
+37. MPU_vTaskResume
+38. MPU_vTaskSuspend
+39. MPU_vTaskPrioritySet
+40. MPU_vTaskGetInfo
+41. MPU_xTaskAbortDelay
+42. MPU_vTaskDelete
 
 ### List of functions causing arbitrary read
-
+1. MPU_xStreamBufferGenericCreateStatic
+2. MPU_xStreamBufferBytesAvailable
+3. MPU_xStreamBufferSpacesAvailable
+4. MPU_xStreamBufferNextMessageLengthBytes
+5. MPU_xStreamBufferReceive
+6. MPU_xStreamBufferSend
+7. MPU_xEventGroupSync
+8. MPU_xEventGroupSetBits
+9. MPU_xEventGroupClearBits
+10. MPU_xEventGroupWaitBits
+11. MPU_xEventGroupCreateStatic
+12. MPU_xTimerGetExpiryTime
+13. MPU_xTimerGetPeriod
+14. MPU_pcTimerGetName
+15. MPU_pvTimerGetTimerID
+16. MPU_xQueueSelectFromSet
+17. MPU_xQueueGenericCreateStatic
+18. MPU_xQueueGetMutexHolder
+19. MPU_xQueueCreateCountingSemaphoreStatic
+20. MPU_xQueueCreateMutexStatic
+21. MPU_uxQueueSpacesAvailable
+22. MPU_uxQueueMessagesWaiting
+23. MPU_ulTaskGenericNotifyValueClear
+24. MPU_ulTaskGenericNotifyTake
+25. MPU_pvTaskGetThreadLocalStoragePointer
+26. MPU_xTaskGetApplicationTaskTag
+27. MPU_pcTaskGetName
+28. MPU_uxTaskPriorityGet
+29. MPU_xTaskCreateStatic
 
 ### List of functions causing other security issues
-
-
+1. MPU_xTaskCreate
+2. MPU_xQueueGenericCreate
+3. MPU_xStreamBufferGenericCreate
+4. MPU_xQueueCreateCountingSemaphore
+5. MPU_xQueueCreateMutex
+6. MPU_xQueueCreateSet
+7. MPU_vQueueAddToRegistry
+8. MPU_eTaskGetState
+9. MPU_xStreamBufferIsEmpty
+10. MPU_xTaskCheckForTimeOut
+11. MPU_xTaskDelayUntil
+12. MPU_xStreamBufferIsFull
+13. MPU_xTimerGenericCommand
+14. MPU_xTaskCatchUpTicks
+15. MPU_vQueueUnregisterQueue
+16. MPU_vTaskDelay
+17. MPU_uxTaskGetSystemState
+18. MPU_xTaskCallApplicationTaskHook
+19. MPU_xTaskGetHandle
+20. MPU_vTaskSetTimeOutState
+21. MPU_uxTimerGetReloadMode
+22. MPU_pcQueueGetName
+23. MPU_xTimerIsTimerActive
 ## More Detailed Analysis Results
 [Identifying Trampoline Functions in FreeRTOS that Lack Checks](https://docs.google.com/document/d/1Jr1zfKXG5v4M4E8Fc4IgjKFUk2b2DsCCxUoiQCueWHI/edit?usp=sharing)
