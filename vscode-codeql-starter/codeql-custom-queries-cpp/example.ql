@@ -31,9 +31,9 @@ class MPUTaskArbWCfg extends TaintTracking::Configuration {
         )
     }
     //this ignore the number
-    //override predicate isSanitizer(DataFlow::Node node) {
-       // not node.getType().getUnderlyingType() instanceof PointerType
-     // }
+    override predicate isSanitizer(DataFlow::Node node) {
+        not node.getType().getUnderlyingType() instanceof PointerType
+      }
     override predicate isAdditionalTaintStep(DataFlow::Node node1, DataFlow::Node node2) {
         exists(FieldAccess fa |
             fa = node2.asExpr()
@@ -91,8 +91,8 @@ class MPUTaskimplicit extends TaintTracking::Configuration {
 
 // ================================================================
 
- from MPUTaskArbWCfg cfg, DataFlow::PathNode source, DataFlow::PathNode sink
- where cfg.hasFlowPath(source, sink) 
+ //from MPUTaskArbWCfg cfg, DataFlow::PathNode source, DataFlow::PathNode sink
+ //where cfg.hasFlowPath(source, sink) 
  //and source.getNode().getFunction().getName()="MPU_xQueueCreateSet"
  //select source, sink, sink.getNode().getLocation()
 
@@ -102,8 +102,8 @@ class MPUTaskimplicit extends TaintTracking::Configuration {
 //where cfg.hasFlowPath(source, sink)
 //select source, sink, sink.getNode().getLocation(),source.getNode().getFunction().getName()
 
-//from MPUTaskimplicit cfg, DataFlow::PathNode source, DataFlow::PathNode sink
-//where cfg.hasFlowPath(source, sink) 
+from MPUTaskimplicit cfg, DataFlow::PathNode source, DataFlow::PathNode sink
+where cfg.hasFlowPath(source, sink) 
 //and source.getNode().getFunction().getName()="MPU_xTimerIsTimerActive"
 // ================================================================
 //select source, sink, sink.getNode().getLocation()
