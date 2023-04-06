@@ -24,4 +24,4 @@ An automatic tool to identify all trampoline functions in FreeRTOS that can caus
 
 
 ## More Detailed Analysis Results
-[Google Doc](https://docs.google.com/document/d/1Jr1zfKXG5v4M4E8Fc4IgjKFUk2b2DsCCxUoiQCueWHI/edit?usp=sharing)
+[Identifying Trampoline Functions in FreeRTOS that Lack Checks](https://docs.google.com/document/d/1Jr1zfKXG5v4M4E8Fc4IgjKFUk2b2DsCCxUoiQCueWHI/edit?usp=sharing)
